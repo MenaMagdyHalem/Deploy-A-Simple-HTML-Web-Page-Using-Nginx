@@ -59,7 +59,92 @@ COPY ./Course-Docker/sample-website /usr/share/nginx/html/
 
 # Expose port 80 for HTTP traffic
 EXPOSE 80
-
+```
 ---
+
+## ⚙️ Steps to Deploy
+
+Follow these steps carefully to reproduce the project.
+
+
+## 🔹 Step 1: Clone the Website Repository
+
+First, clone the website source from GitHub:
+
+```bash
+git clone https://github.com/MenaMagdyHalem/Course-Docker.git
+```
+
+##🔹 Step 2: Go Inside the Website Folder
+```bash
+cd sample-website/
+ls
+```
+
+## 🔹 Step 3: Create a Dockerfile
+```bash
+cd ~
+vim Dockerfile
+```
+
+## 🔹 Step 4: Build the Docker Image
+Now build the Docker image and tag it as website:
+```bash
+docker build -t website .
+
+```
+
+## 🔹 Step 5: Run the Container
+```bash
+docker run -it --rm -d -p 3000:80 --name web website
+```
+
+## 🔹 Step 6: Verify the Container is Running
+```bash
+docker ps
+CONTAINER ID   IMAGE     COMMAND                  PORTS                  NAMES
+df46ef6b0769   website   "/docker-entrypoint.…"   0.0.0.0:3000->80/tcp   web
+```
+
+## 🔹 Step 7: Access the Website
+
+Now open your browser and visit:
+
+👉 http://localhost:3000
+or
+👉 http://<your-server-IP>:3000
+You should see your static website running successfully via Nginx inside Docker 🎉
+
+## 🔹 Step 8: Commit the Running Container
+Once you confirm the container works, save it as a new image:
+```bash
+docker commit web menamagdyhalem/new-web
+```
+List your images again:
+```bash
+docker images
+```
+
+## Step 9: Login to Docker Hub
+Login using your Docker Hub credentials:
+```bash
+docker login
+```
+Enter your username and password when prompted.
+
+## 🔹 Step 10: Push Image to Docker Hub
+Push your new image to your Docker Hub repository:
+```bash
+docker push <user-name-account>/new-web
+```
+
+## 👨‍💻 Author
+Mena Magdy Halem
+Instructor & DevOps Engineer
+
+
+
+
+
 
 
